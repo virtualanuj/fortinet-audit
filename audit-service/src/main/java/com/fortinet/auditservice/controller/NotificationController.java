@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.fortinet.auditservice.dto.AuditMessage;
 import com.fortinet.auditservice.exceptions.NotificationNotFoundException;
 import com.fortinet.auditservice.model.Notification;
 import com.fortinet.auditservice.repository.NotificationRepository;
@@ -50,9 +51,9 @@ public class NotificationController {
         notificationRepository.deleteById(id);
     }
 
-    @GetMapping("/sendMessage/{message}")
-    ResponseEntity<String> sendMessage(@PathVariable String message) {
-        microservicesProducer.sendMessage(message);
-        return ResponseEntity.ok("Message sent");
+    @PostMapping("/sendMessage")
+    ResponseEntity<String> sendJsonMessage(@RequestBody AuditMessage message) {
+        microservicesProducer.sendJsonMessage(message);
+        return ResponseEntity.ok("Json Message sent");
     }
 }

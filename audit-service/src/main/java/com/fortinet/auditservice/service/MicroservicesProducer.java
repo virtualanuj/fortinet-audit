@@ -5,6 +5,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
+import com.fortinet.auditservice.dto.AuditMessage;
+
 @Service
 public class MicroservicesProducer {
 
@@ -21,5 +23,8 @@ public class MicroservicesProducer {
         rabbitTemplate.convertAndSend(exchange, routingKey, message);
     }
 
+    public void sendJsonMessage(AuditMessage message) {
+        rabbitTemplate.convertAndSend(exchange, routingKey, message);
+    }
 
 }
