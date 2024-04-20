@@ -16,6 +16,7 @@ import com.fortinet.auditservice.dto.AuditMessage;
 import com.fortinet.auditservice.exceptions.NotificationNotFoundException;
 import com.fortinet.auditservice.model.Notification;
 import com.fortinet.auditservice.repository.NotificationRepository;
+import com.fortinet.auditservice.service.AuditService;
 import com.fortinet.auditservice.service.MicroservicesProducer;
 
 import jakarta.validation.Valid;
@@ -30,6 +31,9 @@ public class NotificationController {
     @Autowired
     MicroservicesProducer microservicesProducer;
 
+    @Autowired
+    AuditService auditService;
+
     @GetMapping("/notifications")
     List<Notification> all() {
         return notificationRepository.findAll();
@@ -39,6 +43,11 @@ public class NotificationController {
     Notification getById(@PathVariable Long id) {
         return notificationRepository.findById(id)
         .orElseThrow( () -> new NotificationNotFoundException(id));      
+    }
+
+    @GetMapping("/notifications/service/{appName}")
+    List<Notification> getByAppName(@PathVariable String appName) {
+        return notificationRepository.findByAppName(appName);
     }
 
     @PostMapping("/notification")
