@@ -1,0 +1,21 @@
+@hostname = http://localhost:8080
+
+get {{hostname}}/api/v1/notifications
+Authorization: Basic user:0a06fc41-6a6e-40cc-8ebb-e0c75dddad89
+
+###
+
+post {{hostname}}/api/v1/sendMessage
+Authorization: Basic user:0a06fc41-6a6e-40cc-8ebb-e0c75dddad89
+Content-Type: application/json
+
+{
+  "id": 11,
+  "message": "A new customer onboarding is completed",
+  "appName": "biz",
+  "severity": 1
+}
+
+###
+get {{hostname}}/api/v1/notifications/service/config
+Authorization: Basic user 0a06fc41-6a6e-40cc-8ebb-e0c75dddad89

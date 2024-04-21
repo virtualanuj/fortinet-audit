@@ -3,7 +3,7 @@ package com.fortinet.auditservice.dto;
 import lombok.Data;
 
 @Data
-public class AuditMessage {
+public class AuditMessageDTO {
 
     private int id;
 

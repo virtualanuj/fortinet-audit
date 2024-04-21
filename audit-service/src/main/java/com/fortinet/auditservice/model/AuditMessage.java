@@ -19,7 +19,7 @@ import lombok.ToString;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-public class Notification {
+public class AuditMessage {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
