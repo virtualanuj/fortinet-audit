@@ -9,10 +9,10 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 @ControllerAdvice
 public class ApplicationExceptionHandler {
 
-    @ExceptionHandler(NotificationNotFoundException.class)
+    @ExceptionHandler(AuditMessageNotFoundException.class)
     @ResponseBody
     @ResponseStatus(HttpStatus.NOT_FOUND)
-    String notificationNotFoundHandler(NotificationNotFoundException exception) {
+    String auditMessageNotFoundHandler(AuditMessageNotFoundException exception) {
         return exception.getMessage();
     }
 }

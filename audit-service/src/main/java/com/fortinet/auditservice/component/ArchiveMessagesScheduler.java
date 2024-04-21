@@ -22,7 +22,7 @@ public class ArchiveMessagesScheduler {
 
     @Scheduled(fixedDelay = 3000000, initialDelay = 120000)
     public void runArchiveRecordsService() {
-        LOGGER.info("Running Scheduled Archive message Task " + window);
+        LOGGER.info(String.format("Running Scheduled Archive message Task every %d mills", window));
         archiveRecordService.moveAuditMessages();;
     }
 }
