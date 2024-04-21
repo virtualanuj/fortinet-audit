@@ -14,8 +14,11 @@ public class AuditService {
     @Autowired
     private AuditMessageRepository auditMessageRepository;
 
-    public List<AuditMessage> getMessagesByAppName(String appName) {
-        return auditMessageRepository.findByAppName(appName);
+    public List<AuditMessage> all() {
+        return auditMessageRepository.findAll();
     }
 
+    public List<AuditMessage> getByAppName(String appName) {
+        return auditMessageRepository.findByAppName(appName);
+    }
 }
