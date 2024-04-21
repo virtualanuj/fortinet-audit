@@ -14,7 +14,7 @@ import com.fortinet.auditservice.repository.AuditMessageRepository;
 public class AuditServiceConsumer {
 
     @Autowired
-    private AuditMessageRepository notificationRepository;
+    private AuditMessageRepository auditMessageRepository;
 
     private static final Logger LOGGER = LoggerFactory.getLogger(AuditServiceConsumer.class);
 
@@ -25,7 +25,7 @@ public class AuditServiceConsumer {
         n.setAppName(message.getAppName());
         n.setMessage(message.getMessage());
         n.setSeverity(message.getSeverity()); 
-        notificationRepository.save(n);
+        auditMessageRepository.save(n);
         LOGGER.info(String.format("Message saved to DB", n.toString()));
     }
 

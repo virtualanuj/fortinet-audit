@@ -12,10 +12,10 @@ import com.fortinet.auditservice.repository.AuditMessageRepository;
 public class AuditService {
 
     @Autowired
-    private AuditMessageRepository notificationRepository;
+    private AuditMessageRepository auditMessageRepository;
 
     public List<AuditMessage> getMessagesByAppName(String appName) {
-        return notificationRepository.findByAppName(appName);
+        return auditMessageRepository.findByAppName(appName);
     }
 
 }
