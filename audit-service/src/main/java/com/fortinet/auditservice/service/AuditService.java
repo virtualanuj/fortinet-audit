@@ -6,13 +6,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.fortinet.auditservice.model.AuditMessage;
-import com.fortinet.auditservice.repository.NotificationRepository;
+import com.fortinet.auditservice.repository.AuditMessageRepository;
 
 @Service
 public class AuditService {
 
     @Autowired
-    private NotificationRepository notificationRepository;
+    private AuditMessageRepository notificationRepository;
 
     public List<AuditMessage> getMessagesByAppName(String appName) {
         return notificationRepository.findByAppName(appName);

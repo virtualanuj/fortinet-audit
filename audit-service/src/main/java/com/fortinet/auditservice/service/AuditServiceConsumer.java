@@ -8,13 +8,13 @@ import org.springframework.stereotype.Service;
 
 import com.fortinet.auditservice.dto.AuditMessageDTO;
 import com.fortinet.auditservice.model.AuditMessage;
-import com.fortinet.auditservice.repository.NotificationRepository;
+import com.fortinet.auditservice.repository.AuditMessageRepository;
 
 @Service
 public class AuditServiceConsumer {
 
     @Autowired
-    private NotificationRepository notificationRepository;
+    private AuditMessageRepository notificationRepository;
 
     private static final Logger LOGGER = LoggerFactory.getLogger(AuditServiceConsumer.class);
 

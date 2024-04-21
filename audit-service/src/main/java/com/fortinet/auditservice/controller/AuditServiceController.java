@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.fortinet.auditservice.exceptions.NotificationNotFoundException;
 import com.fortinet.auditservice.model.AuditMessage;
-import com.fortinet.auditservice.repository.NotificationRepository;
+import com.fortinet.auditservice.repository.AuditMessageRepository;
 import com.fortinet.auditservice.service.AuditService;
 import com.fortinet.auditservice.service.MicroservicesProducer;
 
@@ -19,7 +19,7 @@ import com.fortinet.auditservice.service.MicroservicesProducer;
 public class AuditServiceController {
 
     @Autowired
-    NotificationRepository notificationRepository;
+    AuditMessageRepository notificationRepository;
 
     @Autowired
     MicroservicesProducer microservicesProducer;

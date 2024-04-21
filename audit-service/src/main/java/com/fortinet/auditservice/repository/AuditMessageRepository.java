@@ -8,6 +8,6 @@ import org.springframework.stereotype.Repository;
 import com.fortinet.auditservice.model.AuditMessage;
 
 @Repository
-public interface NotificationRepository extends JpaRepository<AuditMessage, Long> {
+public interface AuditMessageRepository extends JpaRepository<AuditMessage, Long> {
          public List<AuditMessage> findByAppName(String appName);
 }
