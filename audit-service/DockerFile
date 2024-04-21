@@ -1,0 +1,42 @@
+# Use the official OpenJDK 17 image as base image
+FROM adoptopenjdk/openjdk17:alpine
+
+# Set environment variables for RabbitMQ
+ENV RABBITMQ_VERSION 3.9.12
+ENV RABBITMQ_HOME /opt/rabbitmq
+ENV PATH $RABBITMQ_HOME/sbin:$PATH
+
+# Install necessary packages
+RUN apk --no-cache add \
+    curl \
+    bash \
+    unzip
+
+# Download and install RabbitMQ
+RUN curl -L -o rabbitmq-server-generic-unix-latest.zip "https://github.com/rabbitmq/rabbitmq-server/releases/download/v$RABBITMQ_VERSION/rabbitmq-server-generic-unix-$RABBITMQ_VERSION.zip" \
+    && unzip rabbitmq-server-generic-unix-latest.zip -d /opt \
+    && rm rabbitmq-server-generic-unix-latest.zip \
+    && mv /opt/rabbitmq_server-$RABBITMQ_VERSION $RABBITMQ_HOME \
+    && adduser -D rabbitmq \
+    && chown -R rabbitmq:rabbitmq $RABBITMQ_HOME
+
+# Expose RabbitMQ port
+EXPOSE 5672
+
+# Expose the port for management plugin
+EXPOSE 15672
+
+# Run RabbitMQ server
+CMD [ "executable" ] ["rabbitmq-server"]
+
+# Expose port 8080 for Java application
+EXPOSE 8080
+
+# Create a directory for the application
+WORKDIR /app
+
+# Copy the WAR file into the container
+COPY ./target/audit-service-0.0.1-SNAPSHOT.war /app
+
+# Run the Java application
+ENTRYPOINT ["java", "-jar", "audit-service-0.0.1-SNAPSHOT.war"]
